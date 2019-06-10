@@ -2,8 +2,7 @@
 
 Simple Spring-Boot Testing showcase. 
 
-
-Run all tests
+## Run tests
 
 System maven:
 
@@ -15,6 +14,26 @@ Maven Wrapper:
 
 ```
 $ ./mvnw clean verify
+```
+
+## Start application
+
+### Maven
+
+System Maven
+```
+$ mvn spring-boot:run
+```
+
+Maven Wrapper
+```
+$ ./mvnw spring-boot:run
+```
+
+Docker
+```
+$ docker build -t javamark/my-app .
+$ docker run -p 8080:8080 javamark/my-app
 ```
 
 ## Persistence Layer - BookRepository
