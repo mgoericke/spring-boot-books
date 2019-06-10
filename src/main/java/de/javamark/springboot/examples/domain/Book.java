@@ -17,6 +17,9 @@ public class Book {
     @NotNull
     private String author;
 
+    public Book() {
+    }
+
     public Book(@NotNull String name, @NotNull String author) {
         this.name = name;
         this.author = author;

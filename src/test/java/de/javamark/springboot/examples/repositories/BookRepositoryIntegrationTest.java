@@ -22,6 +22,7 @@ public class BookRepositoryIntegrationTest {
 
     @Test
     public void whenFindByName_thenReturnBook() {
+
         Book book = new Book("Stardust", "Neil Gaiman");
         entityManager.persist(book);
         entityManager.flush();
