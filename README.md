@@ -2,6 +2,41 @@
 
 Simple Spring-Boot Testing showcase. 
 
+
+## Run the application
+
+### Maven
+
+#### System Maven
+```
+$ mvn spring-boot:run
+```
+#### Maven Wrapper
+```
+$ ./mvnw spring-boot:run
+```
+#### Docker
+
+Check the Dockerfile how to use a multistage build to containerize Maven Projects (environment agnostic) 
+
+```
+$ docker build -t javamark/my-app .
+$ docker run -p 8080:8080 javamark/my-app
+```
+
+### interact with api
+
+```
+# add a book
+curl -X POST http://localhost:8080/api/books -H 'Content-Type: application/json' -d '{"name": "Coraline", "author": "Neil Gaiman"}'
+
+# get all books
+curl -X GET http://localhost:8080/api/books
+
+# get a single book by id
+curl -X GET http://localhost:8080/api/books/1
+```
+
 ## Run tests
 
 System maven:
@@ -16,25 +51,6 @@ Maven Wrapper:
 $ ./mvnw clean verify
 ```
 
-## Start application
-
-### Maven
-
-System Maven
-```
-$ mvn spring-boot:run
-```
-
-Maven Wrapper
-```
-$ ./mvnw spring-boot:run
-```
-
-Docker
-```
-$ docker build -t javamark/my-app .
-$ docker run -p 8080:8080 javamark/my-app
-```
 
 ## Persistence Layer - BookRepository
 

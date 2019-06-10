@@ -1,12 +1,14 @@
 package de.javamark.springboot.examples.controller;
 
 import de.javamark.springboot.examples.domain.Book;
+import de.javamark.springboot.examples.exceptions.BookNotFoundException;
 import de.javamark.springboot.examples.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -18,6 +20,21 @@ public class BookController {
 
     @GetMapping("/books")
     public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+        return this.bookService.getAllBooks();
+    }
+
+    @GetMapping("/books/{id}")
+    public Book getBookById(@PathVariable Long id) {
+        return this.bookService.getBookById(id);
+    }
+    @PostMapping("/books")
+    public Book addBook(@RequestBody @NotNull Book book) {
+        return this.bookService.addBook(book);
+    }
+
+    @ExceptionHandler(BookNotFoundException.class)
+    public ResponseEntity handleBookNotFoundException(BookNotFoundException ex) {
+        return ResponseEntity.notFound().build();
+
     }
 }

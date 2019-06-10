@@ -8,4 +8,8 @@ public interface BookService {
     public Book getBookByName(String name);
 
     public List<Book> getAllBooks();
+
+    Book addBook(Book book);
+
+    Book getBookById(Long id);
 }
