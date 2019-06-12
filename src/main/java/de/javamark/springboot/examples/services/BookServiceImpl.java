@@ -4,10 +4,12 @@ import de.javamark.springboot.examples.domain.Book;
 import de.javamark.springboot.examples.exceptions.BookNotFoundException;
 import de.javamark.springboot.examples.repositories.BookRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
@@ -27,6 +29,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public Book addBook(Book book) {
         return this.bookRepository.saveAndFlush(book);
     }
